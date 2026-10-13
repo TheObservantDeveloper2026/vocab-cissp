@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#4f6ef7">
+<title>软考信息安全工程师 · 英语背诵手册</title>
+<style>
+  :root {
+    --primary: #4f6ef7;
+    --primary-dark: #3b55d9;
+    --green: #22a06b;
+    --red: #e5484d;
+    --bg: #f4f6fb;
+    --card-bg: #ffffff;
+    --text: #1c2333;
+    --text-sub: #6b7280;
+    --radius: 18px;
+    --shadow: 0 10px 30px rgba(28, 35, 51, .10);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(160deg, #eef1fb 0%, #f7f8fc 55%, #eef4f2 100%);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+  header {
+    padding: 14px 16px 8px;
+    max-width: 860px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  h1 { font-size: 17px; font-weight: 700; letter-spacing: .3px; }
+  h1 small { color: var(--text-sub); font-weight: 500; font-size: 12px; margin-left: 8px; }
+  .toolbar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  select, .btn-ghost {
+    appearance: none;
+    border: 1px solid #dfe3ee;
+    background: #fff;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    cursor: pointer;
+  }
+  select { min-width: 130px; }
+  .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+  .btn-ghost.active { border-color: var(--red); color: var(--red); background: #fef0f0; }
+  .badge {
+    display: inline-block;
+    min-width: 18px;
+    padding: 0 5px;
+    margin-left: 5px;
+    background: var(--red);
+    color: #fff;
+    border-radius: 999px;
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+  }
+  .stats { margin-left: auto; font-size: 13px; color: var(--text-sub); white-space: nowrap; }
+  .stats b { color: var(--green); }
+  .stats b.red { color: var(--red); }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px 8px;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-wrap { width: 100%; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .progress-bar { flex: 1; height: 6px; background: #e4e8f4; border-radius: 3px; overflow: hidden; }
+  .progress-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--primary), #7c9bff); border-radius: 3px; transition: width .25s; }
+  .progress-num { font-size: 12px; color: var(--text-sub); white-space: nowrap; }
+
+  .scene { perspective: 1400px; width: 100%; max-width: 560px; }
+  .card {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    transform-style: preserve-3d;
+    transition: transform .45s cubic-bezier(.2,.7,.3,1);
+    cursor: pointer;
+  }
+  .card.flipped { transform: rotateY(180deg); }
+  .face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #c5cbe0 transparent;
+  }
+  .face::-webkit-scrollbar { width: 6px; }
+  .face::-webkit-scrollbar-thumb { background: #c5cbe0; border-radius: 3px; }
+  .face::-webkit-scrollbar-track { background: transparent; }
+  .face-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 24px;
+    text-align: center;
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+  }
+  .face.back { transform: rotateY(180deg); background: linear-gradient(150deg, #ffffff, #f6f8ff); }
+  .word {
+    font-size: clamp(30px, 7vw, 52px);
+    font-weight: 700;
+    word-break: break-word;
+    line-height: 1.2;
+  }
+  .word.zh { font-size: clamp(26px, 6vw, 42px); color: var(--primary-dark); font-weight: 600; }
+  .ipa {
+    margin-top: 10px;
+    font-size: clamp(15px, 3.5vw, 20px);
+    color: var(--text-sub);
+    font-weight: 400;
+    letter-spacing: .3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .speak-btn {
+    appearance: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: transform .12s, background .15s;
+  }
+  /* 隐藏时彻底移除布局（覆盖 inline-flex） */
+  .speak-btn[hidden] { display: none !important; }
+  .speak-btn svg { width: 20px; height: 20px; display: block; }
+  .face.back .speak-btn { margin-top: 14px; }
+  .speak-btn:hover { background: #eef1fb; }
+  .speak-btn:active { transform: scale(.92); }
+  .speak-btn.playing svg { animation: spk 1s ease-in-out infinite; }
+  @keyframes spk { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+  .hint { margin-top: 18px; font-size: 13px; color: var(--text-sub); }
+  .tag {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    font-size: 11px;
+    color: var(--text-sub);
+    background: #eef1fb;
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+  .known-dot {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 11px;
+    border-radius: 999px;
+    padding: 3px 10px;
+    background: #e8f7f0;
+    color: var(--green);
+  }
+  .wrong-dot {
+    position: absolute;
+    top: 40px;
+    right: 16px;
+    font-size: 11px;
+    border-radius: 999px;
+    padding: 3px 10px;
+    background: #fdebec;
+    color: var(--red);
+  }
+  .pos { position: absolute; bottom: 12px; right: 16px; font-size: 11px; color: #b6bccb; }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 560px;
+  }
+  .actions button {
+    flex: 1;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+    transition: transform .08s, filter .15s;
+  }
+  .actions button:active { transform: scale(.97); }
+  #btnUnknown { background: var(--red); }
+  #btnKnown { background: var(--green); }
+  #btnFlip { background: var(--primary); width: 100%; max-width: 560px; flex: none; }
+  .actions button[disabled] { opacity: .45; cursor: default; }
+
+  .done-panel { text-align: center; max-width: 480px; }
+  .done-panel h2 { font-size: 26px; margin-bottom: 10px; }
+  .done-panel p { color: var(--text-sub); font-size: 14px; line-height: 1.8; margin-bottom: 22px; }
+  .done-panel button {
+    display: block; width: 100%; margin-bottom: 10px;
+    border: none; border-radius: 14px; padding: 13px 0;
+    font-size: 15px; font-weight: 600; cursor: pointer; color: #fff;
+  }
+  #btnAgainUnknown { background: var(--primary); }
+  #btnRestart { background: #8a93a8; }
+
+  footer {
+    text-align: center;
+    font-size: 11px;
+    color: #b0b6c4;
+    padding: 10px 0 calc(12px + env(safe-area-inset-bottom));
+  }
+  kbd {
+    background:#fff;border:1px solid #dfe3ee;border-bottom-width:2px;border-radius:5px;
+    padding:1px 5px;font-size:11px;color:#5b6272;
+  }
+  @media (max-width: 480px) {
+    .card { height: 280px; }
+    .face-inner { padding: 22px 18px; }
+    .stats { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>信息安全工程师英语 <small>点击卡片 · 看英文想中文</small></h1>
+  <div class="toolbar">
+    <select id="groupSel"></select>
+    <button class="btn-ghost" id="btnShuffle">洗牌</button>
+    <button class="btn-ghost" id="btnWrongBook">错题本<span class="badge" id="wrongBadge">0</span></button>
+    <button class="btn-ghost" id="btnReset">清空进度</button>
+    <span class="stats" id="statsLine"></span>
+  </div>
+</header>
+
+<main>
+  <div class="progress-wrap">
+    <div class="progress-bar"><i id="progressFill"></i></div>
+    <span class="progress-num" id="progressNum">0 / 0</span>
+  </div>
+
+  <div class="scene" id="study">
+    <div class="card" id="card">
+      <div class="face front">
+        <div class="face-inner">
+          <span class="tag" id="tagFront"></span>
+          <span class="known-dot" id="knownDot" hidden>已掌握</span>
+          <span class="wrong-dot" id="wrongDot" hidden>错题</span>
+          <div class="word" id="wordFront"></div>
+          <div class="ipa" id="ipaFront" hidden>
+            <button class="speak-btn" id="speakFront" title="朗读" aria-label="朗读英语">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+            </button>
+            <span id="ipaText"></span>
+          </div>
+          <div class="hint">想一想中文意思，点击卡片查看</div>
+          <span class="pos" id="posFront"></span>
+        </div>
+      </div>
+      <div class="face back">
+        <div class="face-inner">
+          <span class="tag" id="tagBack"></span>
+          <div class="word zh" id="wordBack"></div>
+          <div class="hint" id="enBack"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="done-panel" id="done" hidden>
+    <h2 id="doneTitle">本组完成 🎉</h2>
+    <p id="doneText"></p>
+    <button id="btnAgainUnknown">只复习未掌握的卡片</button>
+    <button id="btnRestart">重新开始本组</button>
+  </div>
+
+  <div class="actions" id="actions">
+    <button id="btnFlip">翻转卡片（空格）</button>
+    <button id="btnUnknown" hidden>不认识 ←</button>
+    <button id="btnKnown" hidden>认识 →</button>
+  </div>
+</main>
+
+<footer>软考中级信息安全工程师 · 英语术语背诵手册 · 答错自动收录错题本</footer>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const DATA = [{"en": "network", "zh": "网络<br>networking 网络化；subnetwork 子网；network topology 网络拓扑", "group": "G01 网络基础与协议", "ipa": "/nˈɛtwɜːk/", "audio": "audio/network.mp3"}, {"en": "bandwidth", "zh": "带宽<br>broadband 宽带；baseband 基带；scalable 可扩展的", "group": "G01 网络基础与协议", "ipa": "/bˈændwɪdθ/", "audio": "audio/bandwidth.mp3"}, {"en": "throughput", "zh": "吞吐量<br>goodput 有效吞吐量", "group": "G01 网络基础与协议", "ipa": "/θɹˈuːpʊt/", "audio": "audio/throughput.mp3"}, {"en": "latency", "zh": "时延、延迟<br>delay 延迟；jitter 抖动；propagation delay 传播时延", "group": "G01 网络基础与协议", "ipa": "/lˈeɪtnsi/", "audio": "audio/latency.mp3"}, {"en": "packet", "zh": "数据包<br>frame 帧（数据链路层）；datagram 数据报；segment 报文段", "group": "G01 网络基础与协议", "ipa": "/pˈækɪt/", "audio": "audio/packet.mp3"}, {"en": "protocol", "zh": "协议<br>protocol stack 协议栈；protocol suite 协议族", "group": "G01 网络基础与协议", "ipa": "/pɹˈəʊtəkˌɒl/", "audio": "audio/protocol.mp3"}, {"en": "topology", "zh": "拓扑结构<br>star / bus / ring / mesh 拓扑；physical topology 物理拓扑", "group": "G01 网络基础与协议", "ipa": "", "audio": "audio/topology.mp3"}, {"en": "segment", "zh": "网段、分段<br>segmentation 分段；network segment 网段", "group": "G01 网络基础与协议", "ipa": "/ˈsɛɡmənt/", "audio": "audio/segment.mp3"}, {"en": "gateway", "zh": "网关<br>default gateway 默认网关", "group": "G01 网络基础与协议", "ipa": "", "audio": "audio/gateway.mp3"}, {"en": "interface", "zh": "接口<br>interfacing 接口对接；interface card 网卡", "group": "G01 网络基础与协议", "ipa": "/ˈɪntəfˌeɪs/", "audio": "audio/interface.mp3"}, {"en": "node", "zh": "节点<br>host 主机；peer 对等端；end node 终端节点", "group": "G01 网络基础与协议", "ipa": "", "audio": "audio/node.mp3"}, {"en": "medium", "zh": "传输介质<br>transmission medium 传输介质；wired / wireless 有线/无线", "group": "G01 网络基础与协议", "ipa": "/mˈiːdiəm/", "audio": "audio/medium.mp3"}, {"en": "unicast", "zh": "单播", "group": "G01 网络基础与协议", "ipa": "", "audio": "audio/unicast.mp3"}, {"en": "multicast", "zh": "多播<br>multicast group 组播组", "group": "G01 网络基础与协议", "ipa": "", "audio": "audio/multicast.mp3"}, {"en": "broadcast", "zh": "广播", "group": "G01 网络基础与协议", "ipa": "/bɹˈɔːdkɑːst/", "audio": "audio/broadcast.mp3"}, {"en": "TCP", "zh": "Transmission Control Protocol 传输控制协议<br>面向连接、可靠 reliable", "group": "G02 协议与分层", "ipa": "/tiː siː piː/", "audio": "audio/tcp.mp3"}, {"en": "UDP", "zh": "User Datagram Protocol 用户数据报协议<br>无连接、尽力而为 best-effort", "group": "G02 协议与分层", "ipa": "/juː diː piː/", "audio": "audio/udp.mp3"}, {"en": "IP", "zh": "Internet Protocol 网际协议<br>无连接、不可靠；best-effort delivery", "group": "G02 协议与分层", "ipa": "/ˈaɪˈpi/", "audio": "audio/ip.mp3"}, {"en": "HTTP", "zh": "超文本传输协议 hypertext transfer protocol", "group": "G02 协议与分层", "ipa": "/ˌeɪtʃˌtiˌtiˈpi/", "audio": "audio/http.mp3"}, {"en": "HTTPS", "zh": "加密版超文本传输协议<br>secure 安全的；基于 TLS/SSL", "group": "G02 协议与分层", "ipa": "/eɪtʃ tiː tiː piː es/", "audio": "audio/https.mp3"}, {"en": "FTP", "zh": "File Transfer Protocol 文件传输协议", "group": "G02 协议与分层", "ipa": "/ˌɛfˌtiˈpi/", "audio": "audio/ftp.mp3"}, {"en": "TFTP", "zh": "Trivial FTP 简单文件传输协议", "group": "G02 协议与分层", "ipa": "/tiː ef tiː piː/", "audio": "audio/tftp.mp3"}, {"en": "SFTP", "zh": "SSH File Transfer Protocol<br>走 SSH 加密；upload / download", "group": "G02 协议与分层", "ipa": "/es ef tiː piː/", "audio": "audio/sftp.mp3"}, {"en": "DNS", "zh": "Domain Name System 域名系统<br>resolve 解析；name resolution 名称解析", "group": "G02 协议与分层", "ipa": "/ˌdiˌɛˈnɛs/", "audio": "audio/dns.mp3"}, {"en": "DHCP", "zh": "Dynamic Host Configuration Protocol<br>动态主机配置协议；address lease 地址租约", "group": "G02 协议与分层", "ipa": "/diː eɪtʃ siː piː/", "audio": "audio/dhcp.mp3"}, {"en": "SMTP", "zh": "Simple Mail Transfer Protocol 简单邮件传输协议", "group": "G02 协议与分层", "ipa": "/es em tiː piː/", "audio": "audio/smtp.mp3"}, {"en": "POP3", "zh": "Post Office Protocol v3 邮局协议 v3", "group": "G02 协议与分层", "ipa": "/piː oʊ piː θriː/", "audio": "audio/pop3.mp3"}, {"en": "IMAP", "zh": "Internet Message Access Protocol<br>互联网消息访问协议；mail server 邮件服务器", "group": "G02 协议与分层", "ipa": "/aɪ em eɪ piː/", "audio": "audio/imap.mp3"}, {"en": "SNMP", "zh": "Simple Network Management Protocol<br>简单网络管理协议；MIB 管理信息库；trap 陷阱告警", "group": "G02 协议与分层", "ipa": "/es en em piː/", "audio": "audio/snmp.mp3"}, {"en": "Telnet", "zh": "远程登录（明文，已过时）<br>shell 终端；remote login 远程登录", "group": "G02 协议与分层", "ipa": "", "audio": "audio/telnet.mp3"}, {"en": "SSH", "zh": "Secure Shell 安全外壳<br>encrypted 加密的；remote login 远程登录", "group": "G02 协议与分层", "ipa": "/ˌɛsˌɛsˈeɪtʃ/", "audio": "audio/ssh.mp3"}, {"en": "PPP", "zh": "Point-to-Point Protocol 点对点协议", "group": "G02 协议与分层", "ipa": "/piː piː piː/", "audio": "audio/ppp.mp3"}, {"en": "PPTP", "zh": "Point-to-Point Tunneling Protocol<br>点对点隧道协议；tunnel 隧道", "group": "G02 协议与分层", "ipa": "/piː piː tiː piː/", "audio": "audio/pptp.mp3"}, {"en": "L2TP", "zh": "Layer 2 Tunneling Protocol<br>第二层隧道协议；encapsulation 封装", "group": "G02 协议与分层", "ipa": "", "audio": "audio/l2tp.mp3"}, {"en": "ARP", "zh": "Address Resolution Protocol 地址解析协议<br>ARP spoofing 地址解析欺骗", "group": "G02 协议与分层", "ipa": "/ˈɑɹp/", "audio": "audio/arp.mp3"}, {"en": "ICMP", "zh": "Internet Control Message Protocol<br>互联网控制报文协议；ping / traceroute；echo request 回显请求", "group": "G02 协议与分层", "ipa": "/aɪ siː em piː/", "audio": "audio/icmp.mp3"}, {"en": "router", "zh": "路由器<br>route 路由；routing table 路由表；hop 跳", "group": "G03 网络设备与互联", "ipa": "/ˈɹaʊtɝ/", "audio": "audio/router.mp3"}, {"en": "switch", "zh": "交换机<br>switching 交换；VLAN 虚拟局域网；managed switch 网管型交换机", "group": "G03 网络设备与互联", "ipa": "/swˈɪtʃ/", "audio": "audio/switch.mp3"}, {"en": "bridge", "zh": "网桥", "group": "G03 网络设备与互联", "ipa": "/bɹˈɪdʒ/", "audio": "audio/bridge.mp3"}, {"en": "repeater", "zh": "中继器", "group": "G03 网络设备与互联", "ipa": "/ɹɪpˈiːtə/", "audio": "audio/repeater.mp3"}, {"en": "hub", "zh": "集线器<br>collision 碰撞（共享带宽）", "group": "G03 网络设备与互联", "ipa": "/hˈʌb/", "audio": "audio/hub.mp3"}, {"en": "firewall", "zh": "防火墙<br>packet filtering 包过滤；stateful 有状态；NGFW 下一代防火墙", "group": "G03 网络设备与互联", "ipa": "/fˈaɪəwɔːl/", "audio": "audio/firewall.mp3"}, {"en": "modem", "zh": "调制解调器", "group": "G03 网络设备与互联", "ipa": "", "audio": "audio/modem.mp3"}, {"en": "transceiver", "zh": "收发器<br>transmit 发送；receive 接收", "group": "G03 网络设备与互联", "ipa": "/tɹænsˈiːvə/", "audio": "audio/transceiver.mp3"}, {"en": "load balancer", "zh": "负载均衡器<br>distribute 分发；balancing 均衡", "group": "G03 网络设备与互联", "ipa": "/lˈəʊd/", "audio": "audio/load_balancer.mp3"}, {"en": "proxy server", "zh": "代理服务器<br>forward 转发；cache 缓存；reverse proxy 反向代理", "group": "G03 网络设备与互联", "ipa": "/pɹˈɒksi/ /sˈɜːvə/", "audio": "audio/proxy_server.mp3"}, {"en": "VPN", "zh": "Virtual Private Network 虚拟专用网络<br>tunnel / encrypt / remote access 远程接入", "group": "G03 网络设备与互联", "ipa": "/viː piː en/", "audio": "audio/vpn.mp3"}, {"en": "DMZ", "zh": "Demilitarized Zone 非军事区、隔离区<br>expose 对外暴露；isolated 隔离的", "group": "G03 网络设备与互联", "ipa": "/ˈdiˌɛmˌzi/", "audio": "audio/dmz.mp3"}, {"en": "NAT", "zh": "Network Address Translation 网络地址转换<br>private address 私有地址；port mapping 端口映射", "group": "G03 网络设备与互联", "ipa": "/ˈnæt/", "audio": "audio/nat.mp3"}, {"en": "configure", "zh": "配置", "group": "G03 网络设备与互联", "ipa": "", "audio": "audio/configure.mp3"}, {"en": "deploy", "zh": "部署", "group": "G03 网络设备与互联", "ipa": "", "audio": "audio/deploy.mp3"}, {"en": "monitor", "zh": "监控", "group": "G03 网络设备与互联", "ipa": "/mˈɒnɪtə/", "audio": "audio/monitor.mp3"}, {"en": "eavesdropping", "zh": "窃听<br>tap 窃听器；wiretap 窃听", "group": "G04 网络攻击与防护", "ipa": "", "audio": "audio/eavesdropping.mp3"}, {"en": "sniffing", "zh": "嗅探<br>capture 抓包；promiscuous mode 混杂模式", "group": "G04 网络攻击与防护", "ipa": "/snˈɪfɪŋ/", "audio": "audio/sniffing.mp3"}, {"en": "spoofing", "zh": "欺骗<br>masquerade 冒充；identity theft 身份盗用", "group": "G04 网络攻击与防护", "ipa": "/spˈuːfɪŋ/", "audio": "audio/spoofing.mp3"}, {"en": "phishing", "zh": "网络钓鱼<br>lure 引诱；malicious 恶意的；spear phishing 鱼叉钓鱼", "group": "G04 网络攻击与防护", "ipa": "/fˈɪʃɪŋ/", "audio": "audio/phishing.mp3"}, {"en": "smurf attack", "zh": "Smurf 攻击<br>amplification 放大攻击", "group": "G04 网络攻击与防护", "ipa": "/ətˈæk/", "audio": "audio/smurf_attack.mp3"}, {"en": "DoS", "zh": "Denial of Service 拒绝服务攻击<br>flood 洪泛；overwhelm 使不堪重负", "group": "G04 网络攻击与防护", "ipa": "/dˈɒs/", "audio": "audio/dos.mp3"}, {"en": "DDoS", "zh": "Distributed Denial of Service<br>分布式拒绝服务攻击", "group": "G04 网络攻击与防护", "ipa": "", "audio": "audio/ddos.mp3"}, {"en": "man-in-the-middle", "zh": "中间人攻击<br>intercept 截获；eavesdrop 偷听", "group": "G04 网络攻击与防护", "ipa": "/mˈæn/ /ˈɪn/ /ðə/ /mˈɪdəl/", "audio": "audio/man_in_the_middle.mp3"}, {"en": "replay attack", "zh": "重放攻击<br>replay 重放；nonce 随机数（防重放）", "group": "G04 网络攻击与防护", "ipa": "/ətˈæk/", "audio": "audio/replay_attack.mp3"}, {"en": "brute force", "zh": "暴力破解<br>dictionary attack 字典攻击；crack 破解", "group": "G04 网络攻击与防护", "ipa": "", "audio": "audio/brute_force.mp3"}, {"en": "privilege escalation", "zh": "权限提升<br>escalate 提升；root 超级用户；vertical / horizontal 垂直/水平", "group": "G04 网络攻击与防护", "ipa": "", "audio": "audio/privilege_escalation.mp3"}, {"en": "ARP spoofing", "zh": "ARP 欺骗<br>man-in-the-middle 攻击的一种实现", "group": "G04 网络攻击与防护", "ipa": "/ˈɑɹp/ /spˈuːfɪŋ/", "audio": "audio/arp_spoofing.mp3"}, {"en": "session hijacking", "zh": "会话劫持<br>hijack 劫持；token 令牌", "group": "G04 网络攻击与防护", "ipa": "/sˈɛʃən/", "audio": "audio/session_hijacking.mp3"}, {"en": "plaintext", "zh": "明文<br>in plaintext 以明文形式存储", "group": "G05 密码学基本术语", "ipa": "", "audio": "audio/plaintext.mp3"}, {"en": "cleartext", "zh": "明文（同 plaintext）", "group": "G05 密码学基本术语", "ipa": "", "audio": "audio/cleartext.mp3"}, {"en": "ciphertext", "zh": "密文<br>decrypt 解密后得到 plaintext", "group": "G05 密码学基本术语", "ipa": "", "audio": "audio/ciphertext.mp3"}, {"en": "cryptogram", "zh": "密文", "group": "G05 密码学基本术语", "ipa": "", "audio": "audio/cryptogram.mp3"}, {"en": "encryption", "zh": "加密<br>decryption 解密；encrypt A with B 用B 加密 A", "group": "G05 密码学基本术语", "ipa": "/ɛnkɹˈɪpʃən/", "audio": "audio/encryption.mp3"}, {"en": "decryption", "zh": "解密", "group": "G05 密码学基本术语", "ipa": "/dɪkɹˈɪpʃən/", "audio": "audio/decryption.mp3"}, {"en": "cipher", "zh": "密码、算法<br>ciphertext 密文；key 密钥", "group": "G05 密码学基本术语", "ipa": "", "audio": "audio/cipher.mp3"}, {"en": "algorithm", "zh": "算法", "group": "G05 密码学基本术语", "ipa": "", "audio": "audio/algorithm.mp3"}, {"en": "key", "zh": "密钥<br>key length 密钥长度；key space 密钥空间；key management 密钥管理", "group": "G05 密码学基本术语", "ipa": "/kˈiː/", "audio": "audio/key.mp3"}, {"en": "known-plaintext attack", "zh": "已知明文攻击", "group": "G05 密码学基本术语", "ipa": "/ətˈæk/", "audio": "audio/known_plaintext_attack.mp3"}, {"en": "chosen-plaintext attack", "zh": "选择明文攻击", "group": "G05 密码学基本术语", "ipa": "/ətˈæk/", "audio": "audio/chosen_plaintext_attack.mp3"}, {"en": "cryptanalysis", "zh": "密码分析<br>break / crack the cipher 破译", "group": "G05 密码学基本术语", "ipa": "", "audio": "audio/cryptanalysis.mp3"}, {"en": "cryptography", "zh": "密码学<br>cryptographic 密码学的；hash 摘要", "group": "G05 密码学基本术语", "ipa": "", "audio": "audio/cryptography.mp3"}, {"en": "plaintext space", "zh": "明文空间<br>entropy 熵；random 随机", "group": "G05 密码学基本术语", "ipa": "/spˈeɪs/", "audio": "audio/plaintext_space.mp3"}, {"en": "key space", "zh": "密钥空间<br>entropy 熵；random 随机", "group": "G05 密码学基本术语", "ipa": "/kˈiː/ /spˈeɪs/", "audio": "audio/key_space.mp3"}, {"en": "DES", "zh": "Data Encryption Standard 数据加密标准<br>56-bit key；block cipher 分组密码", "group": "G06 密码学算法与机制", "ipa": "/ˈdɛs/", "audio": "audio/des.mp3"}, {"en": "3DES", "zh": "Triple DES 三重 DES<br>已不建议用于新系统", "group": "G06 密码学算法与机制", "ipa": "/θriː diː iː es/", "audio": "audio/3des.mp3"}, {"en": "AES", "zh": "Advanced Encryption Standard 高级加密标准<br>128/192/256-bit key；substitution 替换", "group": "G06 密码学算法与机制", "ipa": "/eɪ iː es/", "audio": "audio/aes.mp3"}, {"en": "RSA", "zh": "非对称算法<br>public key 公钥；private key 私钥；modulo 取模", "group": "G06 密码学算法与机制", "ipa": "/ɑːr es eɪ/", "audio": "audio/rsa.mp3"}, {"en": "ECC", "zh": "Elliptic Curve Cryptography 椭圆曲线密码<br>digital signature 数字签名", "group": "G06 密码学算法与机制", "ipa": "/iː siː siː/", "audio": "audio/ecc.mp3"}, {"en": "hash", "zh": "哈希、消息摘要<br>fixed-length 定长输出；collision 碰撞", "group": "G06 密码学算法与机制", "ipa": "", "audio": "audio/hash.mp3"}, {"en": "message digest", "zh": "消息摘要（同 hash）", "group": "G06 密码学算法与机制", "ipa": "/ˈdaɪdʒɛst/", "audio": "audio/message_digest.mp3"}, {"en": "MD5", "zh": "摘要算法<br>已被攻破，不再安全", "group": "G06 密码学算法与机制", "ipa": "/em diː faɪv/", "audio": "audio/md5.mp3"}, {"en": "SHA-1", "zh": "安全哈希算法第 1 版<br>已被攻破", "group": "G06 密码学算法与机制", "ipa": "/ˈʃɑ/", "audio": "audio/sha_1.mp3"}, {"en": "SHA-256", "zh": "SHA-2（256 位）<br>当前主流安全摘要", "group": "G06 密码学算法与机制", "ipa": "/ˈʃɑ/", "audio": "audio/sha_256.mp3"}, {"en": "digital signature", "zh": "数字签名<br>sign 签名；verify 验证；integrity 完整性", "group": "G06 密码学算法与机制", "ipa": "/dˈɪdʒɪtəl/ /sˈɪɡnɪtʃə/", "audio": "audio/digital_signature.mp3"}, {"en": "certificate", "zh": "证书<br>issue a certificate 颁发；revoke 吊销", "group": "G06 密码学算法与机制", "ipa": "/sɝˈtɪfɪkət/", "audio": "audio/certificate.mp3"}, {"en": "CA", "zh": "Certificate Authority 认证机构", "group": "G06 密码学算法与机制", "ipa": "/ˈkɑ/", "audio": "audio/ca.mp3"}, {"en": "PKI", "zh": "Public Key Infrastructure 公钥基础设施<br>trust anchor 信任锚；certificate chain 证书链", "group": "G06 密码学算法与机制", "ipa": "/piː keɪ aɪ/", "audio": "audio/pki.mp3"}, {"en": "key exchange", "zh": "密钥交换<br>Diffie-Hellman；shared secret 共享密钥", "group": "G06 密码学算法与机制", "ipa": "/kˈiː/ /ɛkstʃˈeɪndʒ/", "audio": "audio/key_exchange.mp3"}, {"en": "digital envelope", "zh": "数字信封<br>hybrid encryption 混合加密", "group": "G06 密码学算法与机制", "ipa": "/dˈɪdʒɪtəl/", "audio": "audio/digital_envelope.mp3"}, {"en": "one-time pad", "zh": "一次一密<br>perfect secrecy 完全保密（理论最安全）", "group": "G06 密码学算法与机制", "ipa": "/wˈɒn/ /tˈaɪm/", "audio": "audio/one_time_pad.mp3"}, {"en": "salting", "zh": "加盐<br>rainbow table 彩虹表（对应防护）", "group": "G06 密码学算法与机制", "ipa": "", "audio": "audio/salting.mp3"}, {"en": "peppering", "zh": "加胡椒", "group": "G06 密码学算法与机制", "ipa": "", "audio": "audio/peppering.mp3"}, {"en": "steganography", "zh": "信息隐藏、隐写术<br>watermark 水印；conceal 隐藏", "group": "G06 密码学算法与机制", "ipa": "", "audio": "audio/steganography.mp3"}, {"en": "encryption vs encoding", "zh": "加密需密钥、属安全控制；编码(encoding)只是格式转换如 Base64，无安全性", "group": "G07 密码学易错辨析", "ipa": "/ɛnkɹˈɪpʃən/ /ɛnkˈəʊdɪŋ/", "audio": "audio/encryption_vs_encoding.mp3"}, {"en": "hashing vs encryption", "zh": "哈希单向不可逆；加密双向往返", "group": "G07 密码学易错辨析", "ipa": "/ɛnkɹˈɪpʃən/", "audio": "audio/hashing_vs_encryption.mp3"}, {"en": "symmetric vs asymmetric", "zh": "对称：同一密钥加解密，速度快；非对称：公钥加密私钥解密，慢但解决密钥分发", "group": "G07 密码学易错辨析", "ipa": "/sɪmˈɛtɹɪk/ /ˌeɪsɪmˈɛtɹɪk/", "audio": "audio/symmetric_vs_asymmetric.mp3"}, {"en": "confidentiality vs integrity", "zh": "保密性 = 不被看到；完整性 = 不被篡改（用哈希 / 签名实现）", "group": "G07 密码学易错辨析", "ipa": "/kˌɒnfɪdˈɛnʃɪˈælɪti/ /ɪntˈɛɡɹɪti/", "audio": "audio/confidentiality_vs_integrity.mp3"}, {"en": "authentication vs authorization", "zh": "认证 Authentication = 你是谁；授权 Authorization = 你能做什么", "group": "G07 密码学易错辨析", "ipa": "/ɔːθˌɛntɪkˈeɪʃən/ /ˌɔθɝəˈzeɪʃən/", "audio": "audio/authentication_vs_authorization.mp3"}, {"en": "non-repudiation", "zh": "抗抵赖 / 不可否认性<br>靠数字签名实现", "group": "G07 密码学易错辨析", "ipa": "", "audio": "audio/non_repudiation.mp3"}, {"en": "process", "zh": "进程<br>create / terminate a process", "group": "G08 操作系统", "ipa": "/ˈpɹɑˌsɛs/", "audio": "audio/process.mp3"}, {"en": "thread", "zh": "线程<br>multithreading 多线程", "group": "G08 操作系统", "ipa": "", "audio": "audio/thread.mp3"}, {"en": "scheduling", "zh": "调度<br>scheduler 调度器；preemptive 抢占式；round-robin 时间片轮转", "group": "G08 操作系统", "ipa": "", "audio": "audio/scheduling.mp3"}, {"en": "deadlock", "zh": "死锁<br>avoidance / prevention 避免 / 预防；starvation 饥饿", "group": "G08 操作系统", "ipa": "", "audio": "audio/deadlock.mp3"}, {"en": "mutex", "zh": "互斥量<br>mutual exclusion 互斥；race condition 竞争条件", "group": "G08 操作系统", "ipa": "", "audio": "audio/mutex.mp3"}, {"en": "semaphore", "zh": "信号量<br>mutual exclusion 互斥；race condition 竞争条件", "group": "G08 操作系统", "ipa": "", "audio": "audio/semaphore.mp3"}, {"en": "virtual memory", "zh": "虚拟内存<br>page fault 缺页；swap 交换；paging 分页", "group": "G08 操作系统", "ipa": "/vˈɜːtʃuːəl/ /mˈɛməɹˌi/", "audio": "audio/virtual_memory.mp3"}, {"en": "file system", "zh": "文件系统<br>mount 挂载；permission / access control 权限控制", "group": "G08 操作系统", "ipa": "/ˈfaɪɫ/", "audio": "audio/file_system.mp3"}, {"en": "root", "zh": "超级用户<br>least privilege 最小权限", "group": "G08 操作系统", "ipa": "", "audio": "audio/root.mp3"}, {"en": "superuser", "zh": "超级用户", "group": "G08 操作系统", "ipa": "", "audio": "audio/superuser.mp3"}, {"en": "administrator", "zh": "管理员", "group": "G08 操作系统", "ipa": "", "audio": "audio/administrator.mp3"}, {"en": "system call", "zh": "系统调用<br>user mode vs. kernel mode 用户态与内核态", "group": "G08 操作系统", "ipa": "/kˈɔːl/", "audio": "audio/system_call.mp3"}, {"en": "log", "zh": "日志<br>log retention 日志留存；tamper-proof 防篡改", "group": "G08 操作系统", "ipa": "", "audio": "audio/log.mp3"}, {"en": "audit trail", "zh": "审计轨迹<br>tamper-proof 防篡改", "group": "G08 操作系统", "ipa": "/tɹˈeɪl/", "audio": "audio/audit_trail.mp3"}, {"en": "buffer", "zh": "缓冲区<br>flush 刷写；overflow 溢出", "group": "G08 操作系统", "ipa": "", "audio": "audio/buffer.mp3"}, {"en": "cache", "zh": "缓存<br>flush 刷写", "group": "G08 操作系统", "ipa": "", "audio": "audio/cache.mp3"}, {"en": "database", "zh": "数据库<br>relational / NoSQL；DBMS 数据库管理系统", "group": "G09 数据库", "ipa": "", "audio": "audio/database.mp3"}, {"en": "DBMS", "zh": "Database Management System 数据库管理系统", "group": "G09 数据库", "ipa": "/diː biː em es/", "audio": "audio/dbms.mp3"}, {"en": "primary key", "zh": "主键<br>constraint 约束；integrity 完整性", "group": "G09 数据库", "ipa": "/pɹˈaɪməɹi/ /kˈiː/", "audio": "audio/primary_key.mp3"}, {"en": "foreign key", "zh": "外键<br>constraint 约束", "group": "G09 数据库", "ipa": "/kˈiː/", "audio": "audio/foreign_key.mp3"}, {"en": "index", "zh": "索引<br>query optimizer 查询优化器", "group": "G09 数据库", "ipa": "", "audio": "audio/index.mp3"}, {"en": "view", "zh": "视图", "group": "G09 数据库", "ipa": "/vjˈuː/", "audio": "audio/view.mp3"}, {"en": "stored procedure", "zh": "存储过程", "group": "G09 数据库", "ipa": "/pɹəsˈiːdʒə/", "audio": "audio/stored_procedure.mp3"}, {"en": "transaction", "zh": "事务<br>ACID；atomicity 原子性；durability 持久性；isolation 隔离性", "group": "G09 数据库", "ipa": "", "audio": "audio/transaction.mp3"}, {"en": "commit", "zh": "提交<br>isolation level 隔离级别", "group": "G09 数据库", "ipa": "/kəmˈɪt/", "audio": "audio/commit.mp3"}, {"en": "rollback", "zh": "回滚<br>isolation level 隔离级别", "group": "G09 数据库", "ipa": "", "audio": "audio/rollback.mp3"}, {"en": "SQL injection", "zh": "SQL 注入<br>parameterized statement 参数化查询（首选防护）", "group": "G09 数据库", "ipa": "/es kjuː el/", "audio": "audio/sql_injection.mp3"}, {"en": "parameterized statement", "zh": "参数化查询<br>SQL 注入首选防护", "group": "G09 数据库", "ipa": "", "audio": "audio/parameterized_statement.mp3"}, {"en": "backup", "zh": "备份<br>full / incremental backup 全量 / 增量备份", "group": "G09 数据库", "ipa": "", "audio": "audio/backup.mp3"}, {"en": "restore", "zh": "恢复<br>disaster recovery 灾难恢复", "group": "G09 数据库", "ipa": "/ɹɪˈstɔɹ/", "audio": "audio/restore.mp3"}, {"en": "concurrency control", "zh": "并发控制<br>lock 锁；timestamp 时间戳", "group": "G09 数据库", "ipa": "/kəntɹˈəʊl/", "audio": "audio/concurrency_control.mp3"}, {"en": "data warehouse", "zh": "数据仓库<br>ETL 抽取转换加载", "group": "G09 数据库", "ipa": "/dˈeɪtə/", "audio": "audio/data_warehouse.mp3"}, {"en": "data mining", "zh": "数据挖掘<br>ETL 抽取转换加载", "group": "G09 数据库", "ipa": "/dˈeɪtə/", "audio": "audio/data_mining.mp3"}, {"en": "privilege", "zh": "权限<br>grant / revoke 授予 / 撤销", "group": "G09 数据库", "ipa": "", "audio": "audio/privilege.mp3"}, {"en": "role", "zh": "角色<br>grant / revoke 授予 / 撤销", "group": "G09 数据库", "ipa": "", "audio": "audio/role.mp3"}, {"en": "access control", "zh": "访问控制<br>DAC / MAC / RBAC；least privilege 最小权限", "group": "G10 安全技术与攻防", "ipa": "/ˈæksɛs/ /kəntɹˈəʊl/", "audio": "audio/access_control.mp3"}, {"en": "DAC", "zh": "Discretionary Access Control 自主访问控制", "group": "G10 安全技术与攻防", "ipa": "/diː eɪ siː/", "audio": "audio/dac.mp3"}, {"en": "MAC", "zh": "Mandatory Access Control 强制访问控制", "group": "G10 安全技术与攻防", "ipa": "/mˈæk/", "audio": "audio/mac.mp3"}, {"en": "RBAC", "zh": "Role-Based Access Control 基于角色的访问控制", "group": "G10 安全技术与攻防", "ipa": "/ɑːr biː eɪ siː/", "audio": "audio/rbac.mp3"}, {"en": "least privilege", "zh": "最小权限", "group": "G10 安全技术与攻防", "ipa": "", "audio": "audio/least_privilege.mp3"}, {"en": "authentication", "zh": "认证<br>password / token / biometric 生物识别", "group": "G10 安全技术与攻防", "ipa": "/ɔːθˌɛntɪkˈeɪʃən/", "audio": "audio/authentication.mp3"}, {"en": "biometrics", "zh": "生物特征<br>fingerprint 指纹；iris 虹膜；face recognition 人脸识别", "group": "G10 安全技术与攻防", "ipa": "", "audio": "audio/biometrics.mp3"}, {"en": "fingerprint", "zh": "指纹（生物识别）", "group": "G10 安全技术与攻防", "ipa": "", "audio": "audio/fingerprint.mp3"}, {"en": "iris", "zh": "虹膜", "group": "G10 安全技术与攻防", "ipa": "", "audio": "audio/iris.mp3"}, {"en": "face recognition", "zh": "人脸识别", "group": "G10 安全技术与攻防", "ipa": "/fˈeɪs/", "audio": "audio/face_recognition.mp3"}, {"en": "IDS", "zh": "Intrusion Detection System 入侵检测系统<br>signature-based 基于特征；anomaly-based 基于异常", "group": "G10 安全技术与攻防", "ipa": "/ˈaɪdz/", "audio": "audio/ids.mp3"}, {"en": "IPS", "zh": "Intrusion Prevention System 入侵防御系统", "group": "G10 安全技术与攻防", "ipa": "/aɪ piː es/", "audio": "audio/ips.mp3"}, {"en": "false positive", "zh": "误报<br>trade-off 权衡", "group": "G10 安全技术与攻防", "ipa": "", "audio": "audio/false_positive.mp3"}, {"en": "false negative", "zh": "漏报<br>trade-off 权衡", "group": "G10 安全技术与攻防", "ipa": "", "audio": "audio/false_negative.mp3"}, {"en": "antivirus", "zh": "防病毒<br>quarantine 隔离；scan 扫描；update 升级", "group": "G10 安全技术与攻防", "ipa": "/ˌæntɪvˈaɪɹəs/", "audio": "audio/antivirus.mp3"}, {"en": "SIEM", "zh": "Security Information and Event Management<br>安全信息与事件管理；log aggregation 日志聚合；alert 告警", "group": "G10 安全技术与攻防", "ipa": "/es aɪ iː em/", "audio": "audio/siem.mp3"}, {"en": "penetration test", "zh": "渗透测试<br>white box / black box 白盒 / 黑盒", "group": "G10 安全技术与攻防", "ipa": "", "audio": "audio/penetration_test.mp3"}, {"en": "vulnerability assessment", "zh": "漏洞评估<br>scan 扫描；report 报告；rate 评级", "group": "G10 安全技术与攻防", "ipa": "/vˌʌlnəɹəbˈɪlɪti/", "audio": "audio/vulnerability_assessment.mp3"}, {"en": "hardening", "zh": "加固<br>baseline 基线配置；benchmark 基准", "group": "G10 安全技术与攻防", "ipa": "", "audio": "audio/hardening.mp3"}, {"en": "disaster recovery", "zh": "灾难恢复<br>failover 故障切换；hot site 热点站", "group": "G10 安全技术与攻防", "ipa": "", "audio": "audio/disaster_recovery.mp3"}, {"en": "business continuity", "zh": "业务连续性<br>failover 故障切换；hot site 热点站", "group": "G10 安全技术与攻防", "ipa": "", "audio": "audio/business_continuity.mp3"}, {"en": "asset", "zh": "资产", "group": "G10 安全技术与攻防", "ipa": "", "audio": "audio/asset.mp3"}, {"en": "threat", "zh": "威胁", "group": "G10 安全技术与攻防", "ipa": "/θɹˈɛt/", "audio": "audio/threat.mp3"}, {"en": "vulnerability", "zh": "脆弱性", "group": "G10 安全技术与攻防", "ipa": "/vˌʌlnəɹəbˈɪlɪti/", "audio": "audio/vulnerability.mp3"}, {"en": "impact", "zh": "影响<br>risk assessment 风险评估", "group": "G10 安全技术与攻防", "ipa": "/ˈɪmpækt/", "audio": "audio/impact.mp3"}, {"en": "risk assessment", "zh": "风险评估<br>asset / threat / vulnerability / impact 四要素", "group": "G10 安全技术与攻防", "ipa": "/ɹˈɪsk/", "audio": "audio/risk_assessment.mp3"}, {"en": "residual risk", "zh": "剩余风险<br>risk mitigation 风险缓解；risk acceptance 风险接受", "group": "G10 安全技术与攻防", "ipa": "/ɹˈɪsk/", "audio": "audio/residual_risk.mp3"}, {"en": "risk mitigation", "zh": "风险缓解", "group": "G10 安全技术与攻防", "ipa": "/ɹˈɪsk/", "audio": "audio/risk_mitigation.mp3"}, {"en": "risk acceptance", "zh": "风险接受", "group": "G10 安全技术与攻防", "ipa": "/ɹˈɪsk/", "audio": "audio/risk_acceptance.mp3"}, {"en": "scan", "zh": "扫描<br>port scan 端口扫描；vulnerability scan 漏洞扫描", "group": "G11 攻防技术", "ipa": "/skˈæn/", "audio": "audio/scan.mp3"}, {"en": "port scan", "zh": "端口扫描", "group": "G11 攻防技术", "ipa": "/pˈɔːt/ /skˈæn/", "audio": "audio/port_scan.mp3"}, {"en": "exploit", "zh": "利用（漏洞）<br>exploit a flaw；exploit kit 利用工具包", "group": "G11 攻防技术", "ipa": "/ˈɛksˌpɫɔɪt/", "audio": "audio/exploit.mp3"}, {"en": "payload", "zh": "载荷<br>malicious payload 恶意载荷", "group": "G11 攻防技术", "ipa": "", "audio": "audio/payload.mp3"}, {"en": "backdoor", "zh": "后门", "group": "G11 攻防技术", "ipa": "", "audio": "audio/backdoor.mp3"}, {"en": "trojan", "zh": "木马", "group": "G11 攻防技术", "ipa": "/ˈtɹoʊdʒən/", "audio": "audio/trojan.mp3"}, {"en": "worm", "zh": "蠕虫<br>self-replicate 自我复制", "group": "G11 攻防技术", "ipa": "/wˈɜːm/", "audio": "audio/worm.mp3"}, {"en": "rootkit", "zh": "Rootkit（内核级后门）", "group": "G11 攻防技术", "ipa": "", "audio": "audio/rootkit.mp3"}, {"en": "zero-day exploit", "zh": "零日漏洞利用<br>unknown / unpatched 未知 / 未修补", "group": "G11 攻防技术", "ipa": "/ˈɛksˌpɫɔɪt/", "audio": "audio/zero_day_exploit.mp3"}, {"en": "ransomware", "zh": "勒索软件<br>encrypt files for ransom 加密文件索要赎金", "group": "G11 攻防技术", "ipa": "", "audio": "audio/ransomware.mp3"}, {"en": "APT", "zh": "Advanced Persistent Threat 高级持续性威胁<br>long-term targeted attack 长期定向攻击", "group": "G11 攻防技术", "ipa": "/eɪ piː tiː/", "audio": "audio/apt.mp3"}, {"en": "social engineering", "zh": "社会工程<br>pretext 借口；impersonate 冒充", "group": "G11 攻防技术", "ipa": "", "audio": "audio/social_engineering.mp3"}, {"en": "attack surface", "zh": "攻击面<br>reduce the attack surface 缩小攻击面", "group": "G11 攻防技术", "ipa": "/ətˈæk/", "audio": "audio/attack_surface.mp3"}, {"en": "attack vector", "zh": "攻击途径<br>reduce the attack surface 缩小攻击面", "group": "G11 攻防技术", "ipa": "/ətˈæk/", "audio": "audio/attack_vector.mp3"}, {"en": "defense in depth", "zh": "纵深防御<br>layered protection 分层防护", "group": "G11 攻防技术", "ipa": "/ˈɪn/", "audio": "audio/defense_in_depth.mp3"}, {"en": "threat intelligence", "zh": "威胁情报<br>indicator of compromise (IoC) 失陷指标", "group": "G11 攻防技术", "ipa": "/θɹˈɛt/", "audio": "audio/threat_intelligence.mp3"}, {"en": "honeypot", "zh": "蜜罐<br>decoy 诱饵；trap 陷阱", "group": "G11 攻防技术", "ipa": "", "audio": "audio/honeypot.mp3"}, {"en": "data exfiltration", "zh": "数据外泄", "group": "G11 攻防技术", "ipa": "/dˈeɪtə/", "audio": "audio/data_exfiltration.mp3"}, {"en": "contain eradicate recover", "zh": "事件处置三阶段：遏制、根除、恢复", "group": "G11 攻防技术", "ipa": "/kəntˈeɪn/ /ɹɪˈkəvɝ/", "audio": "audio/contain_eradicate_recover.mp3"}, {"en": "be responsible for", "zh": "负责", "group": "G12 项目管理与法规固定搭配", "ipa": "/bˈiː/ /ɹɪspˈɒnsəbəl/ /fˈɔː/", "audio": "audio/be_responsible_for.mp3"}, {"en": "be accountable to", "zh": "对（某人）负责、汇报<br>对上级汇报用 accountable to", "group": "G12 项目管理与法规固定搭配", "ipa": "/bˈiː/ /tˈuː/", "audio": "audio/be_accountable_to.mp3"}, {"en": "in accordance with", "zh": "依照、符合<br>in compliance with ISO/IEC 27001", "group": "G12 项目管理与法规固定搭配", "ipa": "/ˈɪn/ /əkˈɔːdəns/ /wˈɪð/", "audio": "audio/in_accordance_with.mp3"}, {"en": "in compliance with", "zh": "依照、符合", "group": "G12 项目管理与法规固定搭配", "ipa": "/ˈɪn/ /wˈɪð/", "audio": "audio/in_compliance_with.mp3"}, {"en": "in terms of", "zh": "就⋯而言<br>in terms of performance 就性能而言", "group": "G12 项目管理与法规固定搭配", "ipa": "/ˈɪn/ /ˈɒv/", "audio": "audio/in_terms_of.mp3"}, {"en": "with respect to", "zh": "就⋯而言", "group": "G12 项目管理与法规固定搭配", "ipa": "/wˈɪð/ /ɹɪspˈɛkt/ /tˈuː/", "audio": "audio/with_respect_to.mp3"}, {"en": "with regard to", "zh": "关于", "group": "G12 项目管理与法规固定搭配", "ipa": "/wˈɪð/ /ɹɪɡˈɑːd/ /tˈuː/", "audio": "audio/with_regard_to.mp3"}, {"en": "be subject to", "zh": "受⋯约束；易遭受", "group": "G12 项目管理与法规固定搭配", "ipa": "/bˈiː/ /ˈsəbdʒɪkt/ /tˈuː/", "audio": "audio/be_subject_to.mp3"}, {"en": "prior to", "zh": "在⋯之前", "group": "G12 项目管理与法规固定搭配", "ipa": "/pɹˈaɪə/ /tˈuː/", "audio": "audio/prior_to.mp3"}, {"en": "subsequent to", "zh": "在⋯之后", "group": "G12 项目管理与法规固定搭配", "ipa": "/sˈʌbsɪkwənt/ /tˈuː/", "audio": "audio/subsequent_to.mp3"}, {"en": "be aware of", "zh": "意识到", "group": "G12 项目管理与法规固定搭配", "ipa": "/bˈiː/ /əwˈeə/ /ˈɒv/", "audio": "audio/be_aware_of.mp3"}, {"en": "take into consideration", "zh": "把⋯纳入考虑", "group": "G12 项目管理与法规固定搭配", "ipa": "/tˈeɪk/ /ˈɪntʊ/", "audio": "audio/take_into_consideration.mp3"}, {"en": "carry out", "zh": "执行、开展", "group": "G12 项目管理与法规固定搭配", "ipa": "/kˈæɹi/ /ˈaʊt/", "audio": "audio/carry_out.mp3"}, {"en": "conduct", "zh": "执行、开展", "group": "G12 项目管理与法规固定搭配", "ipa": "/ˈkɑndəkt/", "audio": "audio/conduct.mp3"}, {"en": "perform", "zh": "执行、开展", "group": "G12 项目管理与法规固定搭配", "ipa": "", "audio": "audio/perform.mp3"}, {"en": "implement", "zh": "实施", "group": "G12 项目管理与法规固定搭配", "ipa": "/ˈɪmpɫəmənt/", "audio": "audio/implement.mp3"}, {"en": "enforce", "zh": "强制执行", "group": "G12 项目管理与法规固定搭配", "ipa": "/ɛnfˈɔːs/", "audio": "audio/enforce.mp3"}, {"en": "comply with", "zh": "遵守（法规、标准）", "group": "G12 项目管理与法规固定搭配", "ipa": "/wˈɪð/", "audio": "audio/comply_with.mp3"}, {"en": "be susceptible to", "zh": "易受⋯影响", "group": "G12 项目管理与法规固定搭配", "ipa": "/bˈiː/ /tˈuː/", "audio": "audio/be_susceptible_to.mp3"}, {"en": "be vulnerable to", "zh": "易受⋯影响", "group": "G12 项目管理与法规固定搭配", "ipa": "/bˈiː/ /tˈuː/", "audio": "audio/be_vulnerable_to.mp3"}, {"en": "on a regular basis", "zh": "定期地", "group": "G12 项目管理与法规固定搭配", "ipa": "/ˈɒn/ /ˈeɪ/ /ɹˈɛɡjuːlə/", "audio": "audio/on_a_regular_basis.mp3"}, {"en": "routinely", "zh": "定期地", "group": "G12 项目管理与法规固定搭配", "ipa": "", "audio": "audio/routinely.mp3"}, {"en": "in the long run", "zh": "长期来看", "group": "G12 项目管理与法规固定搭配", "ipa": "/ˈɪn/ /ðə/ /lˈɒŋ/ /ɹˈʌn/", "audio": "audio/in_the_long_run.mp3"}, {"en": "in the short term", "zh": "短期来看", "group": "G12 项目管理与法规固定搭配", "ipa": "/ˈɪn/ /ðə/ /ʃˈɔːt/ /tˈɜːm/", "audio": "audio/in_the_short_term.mp3"}, {"en": "as far as ... is concerned", "zh": "就⋯而言", "group": "G12 项目管理与法规固定搭配", "ipa": "/ˈæz/ /fˈɑː/ /ˈæz/ /ˈɪz/", "audio": "audio/as_far_as_is_concerned.mp3"}, {"en": "abide by", "zh": "遵守（法规、标准）<br>abide by the law", "group": "G12 项目管理与法规固定搭配", "ipa": "/bˈaɪ/", "audio": "audio/abide_by.mp3"}, {"en": "be contingent upon", "zh": "取决于、以⋯为条件", "group": "G12 项目管理与法规固定搭配", "ipa": "/bˈiː/ /əpˈɒn/", "audio": "audio/be_contingent_upon.mp3"}, {"en": "play a key role in", "zh": "在⋯中起关键作用", "group": "G12 项目管理与法规固定搭配", "ipa": "/plˈeɪ/ /ˈeɪ/ /kˈiː/ /ˈɪn/", "audio": "audio/play_a_key_role_in.mp3"}, {"en": "ISO/IEC 27001", "zh": "信息安全管理体系要求 ISMS<br>in accordance with ISO/IEC 27001", "group": "G13 标准与法规", "ipa": "/aɪ es oʊ/ /aɪ iː siː/", "audio": "audio/iso_iec_27001.mp3"}, {"en": "ISO/IEC 27002", "zh": "信息安全控制实践指南", "group": "G13 标准与法规", "ipa": "/aɪ es oʊ/ /aɪ iː siː/", "audio": "audio/iso_iec_27002.mp3"}, {"en": "ISO/IEC 27000", "zh": "信息安全管理体系词汇", "group": "G13 标准与法规", "ipa": "/aɪ es oʊ/ /aɪ iː siː/", "audio": "audio/iso_iec_27000.mp3"}, {"en": "ISO/IEC 27701", "zh": "隐私信息管理体系 PIMS", "group": "G13 标准与法规", "ipa": "/aɪ es oʊ/ /aɪ iː siː/", "audio": "audio/iso_iec_27701.mp3"}, {"en": "GB/T 22239", "zh": "网络安全等级保护基本要求", "group": "G13 标准与法规", "ipa": "/dʒiː biː/", "audio": "audio/gb_t_22239.mp3"}, {"en": "GB/T 25070", "zh": "网络安全等级保护安全设计技术要求", "group": "G13 标准与法规", "ipa": "/dʒiː biː/", "audio": "audio/gb_t_25070.mp3"}, {"en": "Cybersecurity Law", "zh": "网络安全法", "group": "G13 标准与法规", "ipa": "/lˈɔː/", "audio": "audio/cybersecurity_law.mp3"}, {"en": "Data Security Law", "zh": "数据安全法", "group": "G13 标准与法规", "ipa": "/dˈeɪtə/ /lˈɔː/", "audio": "audio/data_security_law.mp3"}, {"en": "PIPL", "zh": "Personal Information Protection Law 个人信息保护法", "group": "G13 标准与法规", "ipa": "/piː aɪ piː el/", "audio": "audio/pipl.mp3"}, {"en": "Cryptography Law", "zh": "密码法", "group": "G13 标准与法规", "ipa": "/lˈɔː/", "audio": "audio/cryptography_law.mp3"}, {"en": "critical information infrastructure", "zh": "关键信息基础设施 CII", "group": "G13 标准与法规", "ipa": "/kɹˈɪtɪkəl/ /ˌɪnfəmˈeɪʃən/", "audio": "audio/critical_information_infrastructure.mp3"}, {"en": "classified protection", "zh": "等级保护 MLPS", "group": "G13 标准与法规", "ipa": "", "audio": "audio/classified_protection.mp3"}, {"en": "regulation", "zh": "法规", "group": "G13 标准与法规", "ipa": "", "audio": "audio/regulation.mp3"}, {"en": "statute", "zh": "成文法", "group": "G13 标准与法规", "ipa": "", "audio": "audio/statute.mp3"}, {"en": "compliance", "zh": "合规", "group": "G13 标准与法规", "ipa": "", "audio": "audio/compliance.mp3"}, {"en": "non-compliance", "zh": "违规", "group": "G13 标准与法规", "ipa": "", "audio": "audio/non_compliance.mp3"}, {"en": "data controller", "zh": "数据控制者", "group": "G13 标准与法规", "ipa": "/dˈeɪtə/ /kəntɹˈəʊlə/", "audio": "audio/data_controller.mp3"}, {"en": "data processor", "zh": "数据处理者", "group": "G13 标准与法规", "ipa": "/dˈeɪtə/", "audio": "audio/data_processor.mp3"}, {"en": "personal information", "zh": "个人信息<br>sensitive personal information 敏感个人信息", "group": "G13 标准与法规", "ipa": "/pˈɜːsənəl/ /ˌɪnfəmˈeɪʃən/", "audio": "audio/personal_information.mp3"}, {"en": "cross-border data transfer", "zh": "数据跨境传输", "group": "G13 标准与法规", "ipa": "/dˈeɪtə/ /ˈtɹænsfɝ/", "audio": "audio/cross_border_data_transfer.mp3"}, {"en": "incident", "zh": "事件", "group": "G13 标准与法规", "ipa": "/ˈɪnsɪdənt/", "audio": "audio/incident.mp3"}, {"en": "breach", "zh": "泄露（数据 breaches）", "group": "G13 标准与法规", "ipa": "", "audio": "audio/breach.mp3"}, {"en": "rectification", "zh": "整改", "group": "G13 标准与法规", "ipa": "", "audio": "audio/rectification.mp3"}, {"en": "remediation", "zh": "整改", "group": "G13 标准与法规", "ipa": "", "audio": "audio/remediation.mp3"}, {"en": "penalties", "zh": "处罚", "group": "G13 标准与法规", "ipa": "", "audio": "audio/penalties.mp3"}, {"en": "fines", "zh": "罚款", "group": "G13 标准与法规", "ipa": "", "audio": "audio/fines.mp3"}, {"en": "AAA", "zh": "Authentication, Authorization and Accounting<br>认证、授权、计费", "group": "G14 高频缩写", "ipa": "/ˌtɹɪpəˈɫeɪ/", "audio": "audio/aaa.mp3"}, {"en": "ACL", "zh": "Access Control List<br>访问控制列表", "group": "G14 高频缩写", "ipa": "/eɪ siː el/", "audio": "audio/acl.mp3"}, {"en": "AES", "zh": "Advanced Encryption Standard<br>高级加密标准", "group": "G14 高频缩写", "ipa": "/eɪ iː es/", "audio": "audio/aes.mp3"}, {"en": "AV", "zh": "Antivirus<br>防病毒", "group": "G14 高频缩写", "ipa": "/eɪ viː/", "audio": "audio/av.mp3"}, {"en": "CIA", "zh": "Confidentiality, Integrity, Availability<br>保密性、完整性、可用性", "group": "G14 高频缩写", "ipa": "/siː aɪ eɪ/", "audio": "audio/cia.mp3"}, {"en": "DLP", "zh": "Data Loss Prevention<br>数据防泄漏", "group": "G14 高频缩写", "ipa": "/diː el piː/", "audio": "audio/dlp.mp3"}, {"en": "DDoS", "zh": "Distributed Denial of Service<br>分布式拒绝服务", "group": "G14 高频缩写", "ipa": "", "audio": "audio/ddos.mp3"}, {"en": "IKE", "zh": "Internet Key Exchange<br>互联网密钥交换", "group": "G14 高频缩写", "ipa": "/aɪ keɪ iː/", "audio": "audio/ike.mp3"}, {"en": "IPSec", "zh": "Internet Protocol Security<br>网络层加密协议", "group": "G14 高频缩写", "ipa": "", "audio": "audio/ipsec.mp3"}, {"en": "NAT", "zh": "Network Address Translation<br>网络地址转换", "group": "G14 高频缩写", "ipa": "/ˈnæt/", "audio": "audio/nat.mp3"}, {"en": "OSI", "zh": "Open Systems Interconnection<br>开放系统互连（7 层模型）", "group": "G14 高频缩写", "ipa": "/oʊ es aɪ/", "audio": "audio/osi.mp3"}, {"en": "RADIUS", "zh": "Remote Authentication Dial-In User Service<br>远程认证拨号用户服务", "group": "G14 高频缩写", "ipa": "/ɹˈeɪdɪəs/", "audio": "audio/radius.mp3"}, {"en": "SAN", "zh": "Storage Area Network<br>存储区域网", "group": "G14 高频缩写", "ipa": "/ˈsæn/", "audio": "audio/san.mp3"}, {"en": "NAS", "zh": "Network Attached Storage<br>网络附加存储", "group": "G14 高频缩写", "ipa": "/en eɪ es/", "audio": "audio/nas.mp3"}, {"en": "SSL", "zh": "Secure Sockets Layer<br>安全套接层（已过时，用 TLS）", "group": "G14 高频缩写", "ipa": "/es es el/", "audio": "audio/ssl.mp3"}, {"en": "TLS", "zh": "Transport Layer Security<br>传输层安全", "group": "G14 高频缩写", "ipa": "/tiː el es/", "audio": "audio/tls.mp3"}, {"en": "SSO", "zh": "Single Sign-On<br>单点登录", "group": "G14 高频缩写", "ipa": "/es es oʊ/", "audio": "audio/sso.mp3"}, {"en": "XSS", "zh": "Cross-Site Scripting<br>跨站脚本", "group": "G14 高频缩写", "ipa": "/eks es es/", "audio": "audio/xss.mp3"}, {"en": "CSRF", "zh": "Cross-Site Request Forgery<br>跨站请求伪造", "group": "G14 高频缩写", "ipa": "/siː es ɑːr ef/", "audio": "audio/csrf.mp3"}, {"en": "SQLi", "zh": "SQL Injection<br>SQL 注入", "group": "G14 高频缩写", "ipa": "", "audio": "audio/sqli.mp3"}, {"en": "RPO", "zh": "Recovery Point Objective<br>恢复点目标", "group": "G14 高频缩写", "ipa": "/ɑːr piː oʊ/", "audio": "audio/rpo.mp3"}, {"en": "RTO", "zh": "Recovery Time Objective<br>恢复时间目标", "group": "G14 高频缩写", "ipa": "/ɑːr tiː oʊ/", "audio": "audio/rto.mp3"}, {"en": "3-2-1 principle", "zh": "备份原则：3 份副本、2 种介质、1 份异地 offsite", "group": "G14 高频缩写", "ipa": "/pɹˈɪnsɪpəl/", "audio": "audio/3_2_1_principle.mp3"}, {"en": "This paper describes", "zh": "本文描述了⋯（论文开篇）<br>This paper describes / outlines / analyzes ⋯", "group": "G15 写作模板句", "ipa": "", "audio": "audio/this_paper_describes.mp3"}, {"en": "X refers to", "zh": "X 指的是⋯ / X is defined as ⋯<br>定义与背景", "group": "G15 写作模板句", "ipa": "/tˈuː/", "audio": "audio/x_refers_to.mp3"}, {"en": "With the rapid development of", "zh": "随着⋯的快速发展<br>With the rapid development of information technology", "group": "G15 写作模板句", "ipa": "/wˈɪð/ /ðə/ /ˈɒv/", "audio": "audio/with_the_rapid_development_of.mp3"}, {"en": "Compared with A, B enjoys", "zh": "与 A 相比，B 具有⋯优势<br>Compared with A, B enjoys the advantages of ⋯", "group": "G15 写作模板句", "ipa": "/kəmpˈeəd/ /wˈɪð/ /ˈeɪ/", "audio": "audio/compared_with_a_b_enjoys.mp3"}, {"en": "In order to ensure", "zh": "为了确保⋯（安全设计）<br>In order to ensure the confidentiality, integrity and availability of the data", "group": "G15 写作模板句", "ipa": "/ˈɪn/ /ˈɔːdə/ /tˈuː/ /ɛnʃˈɔː/", "audio": "audio/in_order_to_ensure.mp3"}, {"en": "The solution complies with", "zh": "该解决方案符合⋯（合规）<br>The solution complies with the requirements of GB/T 22239 and ISO/IEC 27001", "group": "G15 写作模板句", "ipa": "/ðə/ /səlˈuːʃən/ /wˈɪð/", "audio": "audio/the_solution_complies_with.mp3"}, {"en": "It is imperative to do", "zh": "做某事势在必行（论文建议句）", "group": "G15 写作模板句", "ipa": "/ˈɪt/ /ˈɪz/ /tˈuː/ /ˈdu/", "audio": "audio/it_is_imperative_to_do.mp3"}, {"en": "it is suggested that", "zh": "建议⋯<br>It is suggested that ⋯ / It is advisable to ⋯", "group": "G15 写作模板句", "ipa": "/ˈɪt/ /ˈɪz/ /ðˈæt/", "audio": "audio/it_is_suggested_that.mp3"}, {"en": "Measures should be taken to", "zh": "应采取措施来⋯", "group": "G15 写作模板句", "ipa": "/mˈɛʒəz/ /bˈiː/ /tˈuː/", "audio": "audio/measures_should_be_taken_to.mp3"}, {"en": "in accordance with the principle of least privilege", "zh": "依照最小权限原则（安全设计常用）", "group": "G15 写作模板句", "ipa": "/ˈɪn/ /əkˈɔːdəns/ /wˈɪð/ /ðə/ /pɹˈɪnsɪpəl/ /ˈɒv/", "audio": "audio/in_accordance_with_the_principle_of_least_privilege.mp3"}, {"en": "play a key role in risk management", "zh": "在风险管理中起关键作用", "group": "G15 写作模板句", "ipa": "/plˈeɪ/ /ˈeɪ/ /kˈiː/ /ˈɪn/ /ɹˈɪsk/ /mˈænɪdʒmənt/", "audio": "audio/play_a_key_role_in_risk_management.mp3"}, {"en": "the reasons are as follows", "zh": "原因如下（论文列举）", "group": "G15 写作模板句", "ipa": "/ðə/ /ˈæz/", "audio": "audio/the_reasons_are_as_follows.mp3"}, {"en": "in the wild", "zh": "在真实环境中", "group": "G15 写作模板句", "ipa": "/ˈɪn/ /ðə/", "audio": "audio/in_the_wild.mp3"}, {"en": "proof-of-concept", "zh": "概念验证 PoC", "group": "G15 写作模板句", "ipa": "/ˈɒv/ /kˈɒnsɛpt/", "audio": "audio/proof_of_concept.mp3"}];
+const $ = id => document.getElementById(id);
+const KNOWN_KEY = 'ci_known';
+const WRONG_KEY = 'ci_wrong';
+const store = {
+  get known() { try { return new Set(JSON.parse(localStorage.getItem(KNOWN_KEY) || '[]')); } catch { return new Set(); } },
+  set known(set) { localStorage.setItem(KNOWN_KEY, JSON.stringify([...set])); },
+  get wrong() { try { return new Set(JSON.parse(localStorage.getItem(WRONG_KEY) || '[]')); } catch { return new Set(); } },
+  set wrong(set) { localStorage.setItem(WRONG_KEY, JSON.stringify([...set])); }
+};
+
+let known = store.known;
+let wrong = store.wrong;
+let mode = 'study';        // 'study' 正常学习 | 'wrong' 错题本
+let queue = [];            // array of data indices
+let cur = 0;               // pointer into queue
+let flipped = false;
+let filtered = DATA.map((_, i) => i); // current group filter
+
+// ---------- group select ----------
+const groupSel = $('groupSel');
+const groups = [...new Set(DATA.map(d => d.group))];
+groupSel.innerHTML = '<option value="">全部（' + DATA.length + '）</option>' +
+  groups.map(g => {
+    const n = DATA.filter(d => d.group === g).length;
+    return `<option value="${g}">${g}（${n}）</option>`;
+  }).join('');
+groupSel.onchange = () => {
+  filtered = DATA.map((d, i) => ({ d, i })).filter(x => !groupSel.value || x.d.group === groupSel.value).map(x => x.i);
+  buildQueue();
+};
+
+// ---------- header stats / mode ----------
+function updateHeader() {
+  $('btnWrongBook').classList.toggle('active', mode === 'wrong');
+  $('btnWrongBook').innerHTML = mode === 'wrong'
+    ? '返回学习'
+    : '错题本<span class="badge">' + wrong.size + '</span>';
+  $('statsLine').innerHTML = mode === 'wrong'
+    ? '错题待消除 <b class="red">' + wrong.size + '</b>'
+    : '已掌握 <b>' + known.size + '</b> / <span>' + DATA.length + '</span>';
+}
+
+// ---------- queue ----------
+function buildQueue() {
+  let list = filtered.slice();
+  if (mode === 'wrong') list = list.filter(i => wrong.has(DATA[i].en));
+  queue = list;
+  cur = 0;
+  $('done').hidden = true;
+  $('study').style.display = '';
+  $('actions').style.visibility = '';
+  updateHeader();
+  render();
+}
+function restartGroup() { buildQueue(); }
+function reviewUnknown() {
+  queue = filtered.filter(i => !known.has(DATA[i].en));
+  cur = 0;
+  $('done').hidden = true;
+  $('study').style.display = '';
+  $('actions').style.visibility = '';
+  render();
+}
+
+// ---------- render ----------
+let backFillTimer = null;
+function render() {
+  if (queue.length === 0 || cur >= queue.length) { renderDone(); return; }
+  const d = DATA[queue[cur]];
+  const wasFlipped = flipped;
+  if (backFillTimer) { clearTimeout(backFillTimer); backFillTimer = null; }
+  flipped = false;
+  $('card').classList.remove('flipped');
+  $('btnFlip').hidden = false;
+  $('btnFlip').disabled = false;
+  $('btnUnknown').hidden = true;
+  $('btnKnown').hidden = true;
+  // 正面内容立即更新（翻回时正面后半段才可见，安全）
+  $('wordFront').innerHTML = d.en;
+  $('ipaText').textContent = d.ipa || '';
+  $('ipaFront').hidden = !d.ipa;
+  // 英语正面：有 MP3 就显示喇叭（法律类卡虽无 IPA 但有 MP3 也会显示）
+  $('speakFront').hidden = !d.audio;
+  $('tagFront').textContent = d.group;
+  $('knownDot').hidden = mode === 'wrong' || !known.has(d.en);
+  $('wrongDot').hidden = !wrong.has(d.en);
+  $('posFront').textContent = `${cur + 1} / ${queue.length}`;
+  $('btnKnown').textContent = mode === 'wrong' ? '答对了 →' : '认识 →';
+  $('btnUnknown').textContent = mode === 'wrong' ? '还没记住 ←' : '不认识 ←';
+  $('progressFill').style.width = (cur / queue.length * 100) + '%';
+  $('progressNum').textContent = `${cur} / ${queue.length}`;
+  // 答案（背面）内容：若当前已翻转，翻回动画前半段背面仍可见，
+  // 先清空避免新答案闪现，等动画过半（约 250ms）背面不可见时再填入
+  if (wasFlipped) {
+    $('wordBack').innerHTML = '';
+    $('enBack').textContent = '';
+    $('tagBack').textContent = '';
+    backFillTimer = setTimeout(() => {
+      $('wordBack').innerHTML = d.zh;
+      $('tagBack').textContent = d.group;
+      $('enBack').textContent = d.en + (d.ipa ? '  ' + d.ipa : '');
+      backFillTimer = null;
+    }, 250);
+  } else {
+    $('wordBack').innerHTML = d.zh;
+    $('tagBack').textContent = d.group;
+    $('enBack').textContent = d.en + (d.ipa ? '  ' + d.ipa : '');
+  }
+  updateHeader();
+}
+
+function renderDone() {
+  $('study').style.display = 'none';
+  $('done').hidden = false;
+  $('actions').style.visibility = 'hidden';
+  if (mode === 'wrong') {
+    const wrongInFilter = filtered.filter(i => wrong.has(DATA[i].en)).length;
+    $('doneTitle').textContent = wrongInFilter === 0 ? '错题全部消除 🎉' : '本轮错题过完 🎉';
+    $('doneText').textContent = wrongInFilter === 0
+      ? '当前范围的错题都已重新答对。' + (wrong.size === 0 ? '错题本已清空，继续保持！' : '其他分组还有错题，可切换分组继续。')
+      : `还有 ${wrongInFilter} 张错题未消除，再练一遍直到全部答对。`;
+    $('btnAgainUnknown').hidden = true;
+    $('btnRestart').textContent = wrongInFilter === 0 ? '返回学习' : '再练一遍错题';
+  } else {
+    const unknownInFilter = filtered.filter(i => !known.has(DATA[i].en)).length;
+    $('doneTitle').textContent = '本组完成 🎉';
+    $('doneText').textContent = unknownInFilter === 0
+      ? '太棒了！当前范围的卡片全部掌握。'
+      : `本组完成，当前范围还有 ${unknownInFilter} 张未掌握。`;
+    $('btnAgainUnknown').hidden = unknownInFilter === 0;
+    $('btnRestart').textContent = '重新开始本组';
+  }
+  $('progressFill').style.width = '100%';
+  $('progressNum').textContent = `${queue.length} / ${queue.length}`;
+  updateHeader();
+}
+
+// ---------- audio playback (MP3 files, desktop + mobile) ----------
+let _audioCache = {};          // rel(url) -> Audio element
+const _audioRev = String(Date.now());  // 会话固定版本号，绕过 HTTP 缓存的旧 404
+
+function audioUrl(rel) {
+  if (!rel) return '';
+  const p = location.pathname.replace(/index\.html$/, '').replace(/\/$/, '');
+  const segs = p.split('/').filter(Boolean);
+  const up = '../'.repeat(Math.max(0, segs.length - 1));
+  return new URL(up + rel, document.baseURI).href;
+}
+
+function playAudio(url, btn) {
+  if (!url) return;
+  // 停掉上一条不同音频
+  const prev = _audioCache['_current'];
+  if (prev && prev !== _audioCache[url]) {
+    try { prev.pause(); prev.currentTime = 0; } catch(e) {}
+  }
+  let a = _audioCache[url];
+  // 首次创建 或 之前 error 过 → 重建（Chrome 可能记住 error 状态）
+  if (!a || a.error) {
+    a = new Audio();
+    a.preload = 'none';
+    // 首次 src 带会话版本号，绕过 HTTP 缓存的旧 404 响应
+    a.src = url + (url.includes('?') ? '&' : '?') + 'v=' + _audioRev;
+    _audioCache[url] = a;
+  }
+  _audioCache['_current'] = a;
+  // 注意：不再每次都 a.src = url，避免触发 abort 正在加载的请求
+  if (btn) { btn.classList.add('playing'); }
+  const cleanup = () => { if (btn) btn.classList.remove('playing'); };
+  a.onended = cleanup; a.onerror = cleanup;
+  try { a.play().catch(e => { console.warn('audio play failed:', e); cleanup(); }); } catch(e) { cleanup(); }
+}
+
+$('speakFront').addEventListener('click', e => {
+  e.stopPropagation(); e.preventDefault();
+  const d = DATA[queue[cur]];
+  if (d.audio) { playAudio(audioUrl(d.audio), $('speakFront')); }
+});
+
+// ---------- interactions ----------
+function flip() {
+  if ($('done').hidden === false) return;
+  flipped = !flipped;
+  $('card').classList.toggle('flipped', flipped);
+  $('btnFlip').hidden = flipped;
+  $('btnUnknown').hidden = !flipped;
+  $('btnKnown').hidden = !flipped;
+}
+function afterAnswer() {
+  flipped = false;
+  updateHeader();
+  render();
+  $('actions').style.visibility = '';
+}
+$('card').onclick = flip;
+$('btnFlip').onclick = flip;
+// 正常模式：认识=加入已掌握；错题本：答对=从错题本消除
+$('btnKnown').onclick = () => {
+  const d = DATA[queue[cur]];
+  if (mode === 'wrong') {
+    wrong.delete(d.en);
+    store.wrong = wrong;
+    queue.splice(cur, 1);          // 不前进，下一张移到当前位置
+  } else {
+    known.add(d.en);
+    store.known = known;
+    cur++;
+  }
+  afterAnswer();
+};
+// 任何模式下不认识都收录错题本，并排到队尾再出现
+$('btnUnknown').onclick = () => {
+  const d = DATA[queue[cur]];
+  wrong.add(d.en);
+  store.wrong = wrong;
+  queue.push(queue[cur]);
+  if (mode === 'wrong') queue.splice(cur, 1);
+  else cur++;
+  afterAnswer();
+};
+$('btnShuffle').onclick = () => {
+  for (let i = queue.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [queue[i], queue[j]] = [queue[j], queue[i]]; }
+  cur = 0; render();
+};
+$('btnReset').onclick = () => {
+  if (!confirm('确定清空所有已掌握记录？（错题本不受影响，需在错题本内答对消除）')) return;
+  known = new Set(); store.known = known;
+  buildQueue();
+};
+$('btnWrongBook').onclick = () => {
+  mode = mode === 'study' ? 'wrong' : 'study';
+  buildQueue();
+};
+$('btnAgainUnknown').onclick = () => { $('actions').style.visibility = ''; reviewUnknown(); };
+$('btnRestart').onclick = () => {
+  $('actions').style.visibility = '';
+  if (mode === 'wrong') buildQueue(); else restartGroup();
+};
+
+document.onkeydown = e => {
+  if (e.code === 'Space') { e.preventDefault(); flip(); }
+  else if (e.code === 'ArrowRight' && !$('btnKnown').hidden) $('btnKnown').click();
+  else if (e.code === 'ArrowLeft' && !$('btnUnknown').hidden) $('btnUnknown').click();
+};
+
+buildQueue();
+</script>
+</body>
+</html>
